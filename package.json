@@ -1,11 +1,12 @@
 {
-  "name": "prashant-red-black-portfolio",
+  "name": "sushma-portfolio",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
+    "start" : "vite start",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
