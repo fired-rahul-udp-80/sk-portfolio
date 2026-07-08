@@ -4,22 +4,23 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Colors wired to CSS variables so they can be changed dynamically
         blood: {
-          50: "#fff1f1",
-          100: "#ffe0e0",
-          300: "#ff7878",
-          500: "#e50914",
-          600: "#be0610",
-          700: "#8f040c",
-          900: "#3f0207",
+          50: "var(--color-blood-50, #fff1f1)",
+          100: "var(--color-blood-100, #ffe0e0)",
+          300: "var(--color-blood-300, #ff7878)",
+          500: "var(--color-blood-500, #e50914)",
+          600: "var(--color-blood-600, #be0610)",
+          700: "var(--color-blood-700, #8f040c)",
+          900: "var(--color-blood-900, #3f0207)",
         },
-        coal: "#08080a",
-        iron: "#17171b",
-        ash: "#b8b8c2",
+        coal: "var(--color-coal, #08080a)",
+        iron: "var(--color-iron, #17171b)",
+        ash: "var(--color-ash, #b8b8c2)",
       },
       boxShadow: {
-        glow: "0 0 48px rgba(229, 9, 20, 0.32)",
-        hard: "0 20px 70px rgba(0, 0, 0, 0.45)",
+        glow: "0 0 48px rgba(var(--color-blood-rgb, 54,147,244), 0.32)",
+        hard: "0 20px 70px rgba(var(--color-coal-rgb, 8,8,10), 0.45)",
       },
       animation: {
         "pulse-slow": "pulse 4s ease-in-out infinite",
