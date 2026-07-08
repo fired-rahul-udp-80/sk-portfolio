@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   Rocket,
+  Sparkles,
 } from "lucide-react";
 import { profile, stats } from "../data/portfolioData";
 import CTAButton from "../common/CTAButton";
@@ -36,10 +37,10 @@ function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* <div className="mb-6 inline-flex items-center gap-2 rounded border border-blood-500/40 bg-blood-500/10 px-4 py-2 text-sm font-bold text-blood-100">
+          <div className="md:hidden mb-6 inline-flex items-center gap-2 rounded border border-blood-500/40 bg-blood-500/10 px-4 py-2 text-sm font-bold text-blood-100">
             <Sparkles size={16} />
             Available For Freelance
-          </div> */}
+          </div>
           <p className="text-lg font-bold text-ash">Hi, I&apos;m</p>
           <h1 className="mt-2 max-w-4xl text-5xl font-black leading-[0.98] sm:text-7xl lg:text-8xl">
             {profile.name}

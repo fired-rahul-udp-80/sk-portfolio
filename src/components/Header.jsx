@@ -33,11 +33,23 @@ import {
 
 function Header({ isMenuOpen, onToggle, onNavigate }) {
   const [activeId, setActiveId] = useState(navItems?.[0]?.id ?? "home");
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const handleNavigate = (id) => {
     setActiveId(id);
     onNavigate(id);
   };
+
+  React.useEffect(() => {
+    const updateScrollState = () => {
+      setIsScrolled(window.scrollY > 8);
+    };
+
+    updateScrollState();
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateScrollState);
+  }, []);
 
   React.useEffect(() => {
     // Observe sections to update active nav on scroll (intersection-based)
@@ -66,7 +78,9 @@ function Header({ isMenuOpen, onToggle, onNavigate }) {
 
   return (
     <motion.header
-      className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-coal/78 backdrop-blur-xl"
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        isScrolled ? "border-white/10 bg-coal/78 backdrop-blur-xl" : "border-transparent bg-transparent"
+      }`}
       initial={{ opacity: 0, y: -24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
