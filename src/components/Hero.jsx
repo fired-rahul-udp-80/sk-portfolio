@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { profile, stats } from "../data/portfolioData";
 import CTAButton from "../common/CTAButton";
-import myPic from "../../outputs/mypic.jpg";
+import myPic from "../../outputs/mypic1.jpeg";
 
 
 function Hero() {
@@ -108,8 +108,8 @@ function Hero() {
               <motion.img
                 src={myPic}
                 alt="Portrait of Sushma"
-                className="h-full w-full object-contain object-center p-2 sm:p-3"
-                animate={{ scale: [1, 1.035, 1] }}
+                className="h-full w-full object-contain object-center p-2 rounded-md sm:p-3"
+               
                 transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
               />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.015),transparent_20%,transparent_80%,rgba(0,0,0,0.12))]" />
