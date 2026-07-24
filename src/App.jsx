@@ -1,5 +1,5 @@
-import React, { useState, lazy, Suspense } from "react";
-import Section from "./common/Section"
+import React, { useEffect, useRef, useState, lazy, Suspense } from "react";
+import { createEffect } from "magic-cursor-effect";
 import BackgroundEffects from "./common/BackgroundEffects"
 const Header = lazy( () => import ("./components/Header"));
 const Hero = lazy(() => import("./components/Hero"));
@@ -12,8 +12,46 @@ const Experience = lazy(() => import("./components/Experience"))
 const Contact = lazy( ()=> import("./components/Contact"))
 const Footer = lazy(() => import("./components/Footer"))
 
+const cursorOptions = {
+  emission: 4,
+  size: 21,
+  lifeMs: 1400,
+  rise: 0.8,
+  drift: 0.85,
+};
+
+function getThemeAccentColor() {
+  const rgbValue = getComputedStyle(document.documentElement)
+    .getPropertyValue("--color-blood-rgb")
+    .trim();
+
+  return `rgba(${rgbValue || "54,147,244"}, 0.95)`;
+}
+
+function useMagicCursorEffect(rootRef) {
+  useEffect(() => {
+    const rootElement = rootRef.current;
+
+    if (!rootElement) {
+      return undefined;
+    }
+
+    const effect = createEffect("smoke", rootElement, {
+      ...cursorOptions,
+      color: getThemeAccentColor(),
+    });
+
+    return () => {
+      effect.destroy();
+    };
+  }, [rootRef]);
+}
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const rootRef = useRef(null);
+
+  useMagicCursorEffect(rootRef);
 
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -21,7 +59,7 @@ function App() {
   };
 
   return (
-    <main className="relative isolate min-h-screen overflow-hidden bg-coal text-white">
+    <main ref={rootRef} className="relative isolate min-h-screen overflow-hidden bg-coal text-white">
       <BackgroundEffects />
       <Header
         isMenuOpen={isMenuOpen}
